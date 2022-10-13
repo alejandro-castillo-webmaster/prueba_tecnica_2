@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row border border-primary m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('films')">Films</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('people')">People</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('planets')">Planets</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('species')">Species</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('starships')">Starships</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('vehicles')">Vehicles</button>
+        </div>
+    </div>
+    <div class="row m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="return('films')">return </button>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="showSpiner">
+        <div class="col-md-12 text-center">
+            <span class="loader"></span>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="isError">
+        <div class="col-md-12 text-center">
+            <span>Se ha producido un error</span>
+        </div>
+    </div>
+    <div class="row border border-primary m-5 p-2" *ngIf="showData">
+        <div class="col-md-12">
+            <ul>
+                <li><b>Título:</b> {{ dataFilmResponse.title }} </li>
+                <li><b>Opening:</b> {{ dataFilmResponse.opening_crawl }} </li>
+                <li><b>Episodio:</b> {{ dataFilmResponse.episode_id }} </li>
+                <li><b>Director:</b> {{ dataFilmResponse.director }} </li>
+                <li><b>Productor:</b> {{ dataFilmResponse.producer }} </li>
+                <li><b>Estreno:</b> {{ dataFilmResponse.release_date }} </li>
+            </ul>
+        </div>
+    </div>
+</div>

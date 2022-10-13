@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row border border-primary m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('films')">Films</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('people')">People</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('planets')">Planets</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('species')">Species</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('starships')">Starships</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('vehicles')">Vehicles</button>
+        </div>
+    </div>
+    <div class="row m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="return('starships')">return </button>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="showSpiner">
+        <div class="col-md-12 text-center">
+            <span class="loader"></span>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="isError">
+        <div class="col-md-12 text-center">
+            <span>Se ha producido un error</span>
+        </div>
+    </div>
+    <div class="row border border-primary m-5 p-2" *ngIf="showData">
+        <div class="col-md-12">
+            <ul>
+                <li><b>Tipo:</b> {{ dataStarshipResponse.name }} </li>
+                <li><b>Modelo</b> {{ dataStarshipResponse.model }} </li>
+                <li><b>Clase:</b> {{ dataStarshipResponse.starship_class }} </li>
+                <li><b>Constructor:</b> {{ dataStarshipResponse.manufacturer }} </li>
+                <li><b>Coste:</b> {{ dataStarshipResponse.cost_in_credits }} </li>
+                <li><b>Velocidad máxima atmósferica:</b> {{ dataStarshipResponse.max_atmosphering_speed }} </li>
+                <li><b>Velocidad máxima:</b> {{ dataStarshipResponse.hyperdrive_rating }} </li>
+                <li><b>Tripulación:</b> {{ dataStarshipResponse.crew }} </li>
+                <li><b>Pasajeros:</b> {{ dataStarshipResponse.passengers }} </li>
+                <li><b>Capacidad de carga:</b> {{ dataStarshipResponse.cargo_capacity }} </li>
+                <li><b>Tamaño:</b> {{ dataStarshipResponse.length | lenght: dataStarshipResponse.length  }} </li>
+            </ul>
+        </div>
+    </div>
+</div>

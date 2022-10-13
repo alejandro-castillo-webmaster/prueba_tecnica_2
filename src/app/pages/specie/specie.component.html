@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row border border-primary m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('films')">Films</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('people')">People</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('planets')">Planets</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('species')">Species</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('starships')">Starships</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('vehicles')">Vehicles</button>
+        </div>
+    </div>
+    <div class="row m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="return('species')">return </button>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="showSpiner">
+        <div class="col-md-12 text-center">
+            <span class="loader"></span>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="isError">
+        <div class="col-md-12 text-center">
+            <span>Se ha producido un error</span>
+        </div>
+    </div>
+    <div class="row border border-primary m-5 p-2" *ngIf="showData">
+        <div class="col-md-12">
+            <ul>
+                <li><b>Tipo:</b> {{ dataSpecieResponse.name }} </li>
+                <li><b>Clasificación:</b> {{ dataSpecieResponse.classification }} </li>
+                <li><b>Idioma:</b> {{ dataSpecieResponse.language }} </li>
+                <li><b>Vida media:</b> {{ dataSpecieResponse.average_lifespan }} </li>
+            </ul>
+        </div>
+    </div>
+</div>

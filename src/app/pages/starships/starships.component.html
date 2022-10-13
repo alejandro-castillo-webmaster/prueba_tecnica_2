@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row border border-primary m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('films')">Films</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('people')">People</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('planets')">Planets</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('species')">Species</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('starships')">Starships</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="navigate('vehicles')">Vehicles</button>
+        </div>
+    </div>
+    <div class="row m-5 p-2">
+        <div class="col-md-2">
+            <button type="button" (click)="return()">Home</button>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="showSpiner">
+        <div class="col-md-12 text-center">
+            <span class="loader"></span>
+        </div>
+    </div>
+    <div class="row m-5 p-2" *ngIf="isError">
+        <div class="col-md-12 text-center">
+            <span>Se ha producido un error</span>
+        </div>
+    </div>
+    <div class="row border border-primary m-5 p-2" *ngIf="showData">
+        <div class="col-md-12">
+            <div *ngFor="let item of dataStartshipResponse">
+                <ul>
+                    <li><b>Nombre:</b> {{ item.name }} </li>
+                    <li><b>Modelo</b> {{ item.model }} </li>
+                    <li><b>Clase:</b> {{ item.starship_class }} </li>
+                    <li><b>Constructor:</b> {{ item.manufacturer }} </li>
+                    <li><b>Coste:</b> {{ item.cost_in_credits }} </li>
+                    <li><b>Velocidad máxima atmósferica:</b> {{ item.max_atmosphering_speed }} </li>
+                    <li><b>Velocidad máxima:</b> {{ item.hyperdrive_rating }} </li>
+                    <li><b>Tripulación:</b> {{ item.crew }} </li>
+                    <li><b>Pasajeros:</b> {{ item.passengers }} </li>
+                    <li><b>Capacidad de carga:</b> {{ item.cargo_capacity }} </li>
+                    <li><b>Tamaño:</b> {{ item.length | lenght: item.length  }} </li>
+                </ul>
+                <div class="text-center">
+                    <button type="button" (click)="navigateStarship( item.url )">Ver más</button>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
