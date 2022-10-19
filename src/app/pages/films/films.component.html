@@ -23,7 +23,11 @@
         <div class="col-md-2">
             <button type="button" (click)="return()">Home</button>
         </div>
+        <!-- FILTRO -->
+        <input type="text" class="form-control mt-2" name="filterPost" placeholder="Filtar por..."
+            [(ngModel)]="filterPost">
     </div>
+
     <div class="row m-5 p-2" *ngIf="showSpiner">
         <div class="col-md-12 text-center">
             <span class="loader"></span>
@@ -36,7 +40,7 @@
     </div>
     <div class="row border border-primary m-5 p-2" *ngIf="showData">
         <div class="col-md-12">
-            <div *ngFor="let item of dataFilmResponse">
+            <div *ngFor="let item of dataFilmResponse | filter: filterPost:'title'">
                 <ul>
                     <li><b>Titulo:</b> {{ item.title }} </li>
                     <li><b>Opening:</b> {{ item.opening_crawl }} </li>

@@ -23,6 +23,13 @@ export class PersonComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.getInitialData();
+
+    setInterval(() => {
+      if (this.id !== this.activatedRoute.snapshot.params['id']) {
+        this.id = this.activatedRoute.snapshot.params['id'];
+        this.getInitialData();
+      }
+    }, 2000);
   }
 
 

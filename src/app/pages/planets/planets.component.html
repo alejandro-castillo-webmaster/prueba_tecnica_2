@@ -23,8 +23,11 @@
         <div class="col-md-2">
             <button type="button" (click)="return()">Home</button>
         </div>
+        <!-- FILTRO -->
+        <input type="text" class="form-control mt-2" name="filterPost" placeholder="Filtar por..."
+            [(ngModel)]="filterPost">
     </div>
-    <div class="row m-5 p-2"  *ngIf="showSpiner">
+    <div class="row m-5 p-2" *ngIf="showSpiner">
         <div class="col-md-12 text-center">
             <span class="loader"></span>
         </div>
@@ -36,7 +39,7 @@
     </div>
     <div class="row border border-primary m-5 p-2" *ngIf="showData">
         <div class="col-md-12">
-            <div *ngFor="let item of dataPlanetsResponse">
+            <div *ngFor="let item of dataPlanetsResponse | filter: filterPost:'name'">
                 <ul>
                     <li><b>Nombre:</b> {{ item.name }} </li>
                     <li><b>Período de rotación:</b> {{ item.rotation_period }} </li>

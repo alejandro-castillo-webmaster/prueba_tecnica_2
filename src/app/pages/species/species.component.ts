@@ -11,6 +11,7 @@ import { StarWarsDataService } from 'src/app/services/star-wars-data.service';
 export class SpeciesComponent implements OnInit {
 
   public dataSpeciesResponse: SpeciesResponse[] = [];
+  public filterPost: string = '';
   public showData: boolean = false;
   public isError: boolean = false;
   public showSpiner = true;

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { catchError, map } from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
-
 import { FilmsResponse } from '../interfaces/films';
 import { PeopleResponse } from '../interfaces/people';
 import { PlanetsResponse } from '../interfaces/planets';
@@ -17,7 +14,6 @@ import { PlanetResponse } from '../interfaces/planet';
 import { SpecieResponse } from '../interfaces/specie';
 import { StarshipResponse } from '../interfaces/startship';
 import { VehicleResponse } from '../interfaces/vehicle';
-import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -108,5 +104,13 @@ export class StarWarsDataService {
     return this.http.get<VehicleResponse>(`${this.apiUrl}vehicles/${id}`);
   }
 
+  searchPeople(search: string) {
+    return this.http.get<PeopleResponse[]>(this.apiUrl + 'people?search/'+ search)
+      .pipe(
+        map((data: any) => {
+          return data['results'];
+        })
+      );
+  }
 
 }

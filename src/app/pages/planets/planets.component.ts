@@ -11,6 +11,7 @@ import { StarWarsDataService } from 'src/app/services/star-wars-data.service';
 export class PlanetsComponent implements OnInit {
 
   public dataPlanetsResponse: PlanetsResponse[] = [];
+  public filterPost: string = '';
   public showData: boolean = false;
   public isError: boolean = false;
   public showSpiner = true;

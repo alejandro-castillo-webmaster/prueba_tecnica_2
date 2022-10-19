@@ -12,6 +12,7 @@ export class PeopleComponent implements OnInit {
 
 
   public dataPeopleResponse!: PeopleResponse[];
+  public filterPost: string = '';
   public showData: boolean = false;
   public isError: boolean = false;
   public showSpiner = true;

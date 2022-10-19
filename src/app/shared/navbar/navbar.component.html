@@ -1,11 +1,16 @@
 <div class="topnav">
-    <a>Search 1</a>
-    <a>Search 2</a>
-    <a>Search 3</a>
-    <div class="search-container">
+    <span *ngFor="let search of oldSearchs">
+        <a class="pointer" (click)="navigateOldSearchs(search.id)"> {{search.name}} </a>
+    </span>
+    <div class="search-container p-2">
         <form>
-            <input type="text" placeholder="Search.." name="search">
-            <button><i class="fa fa-search"></i></button>
+            <input type="text" placeholder="Buscador personajes" name="valueSearch" [(ngModel)]="valueSearch"
+                (keyup)="getVal()">
         </form>
+        <span class="results" *ngIf="dataSearch.length > 0">
+            <ul *ngFor="let result of dataSearch">
+                <li (click)="navigate(result.name, result.url)" class="pointer">{{ result.name }}</li>
+            </ul>
+        </span>
     </div>
 </div>

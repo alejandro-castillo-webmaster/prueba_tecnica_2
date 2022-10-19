@@ -12,6 +12,7 @@ export class StarshipsComponent implements OnInit {
 
 
   public dataStartshipResponse!: StartshipsResponse[];
+  public filterPost: string = '';
   public showData: boolean = false;
   public isError: boolean = false;
   public showSpiner = true;

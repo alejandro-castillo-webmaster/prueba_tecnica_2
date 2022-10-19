@@ -23,6 +23,9 @@
         <div class="col-md-2">
             <button type="button" (click)="return()">Home</button>
         </div>
+        <!-- FILTRO -->
+        <input type="text" class="form-control mt-2" name="filterPost" placeholder="Filtar por..."
+            [(ngModel)]="filterPost">
     </div>
     <div class="row m-5 p-2" *ngIf="showSpiner">
         <div class="col-md-12 text-center">
@@ -36,7 +39,7 @@
     </div>
     <div class="row border border-primary m-5 p-2" *ngIf="showData">
         <div class="col-md-12">
-            <div *ngFor="let item of dataPeopleResponse">
+            <div *ngFor="let item of dataPeopleResponse | filter: filterPost:'name'">
                 <ul>
                     <li><b>Nombre:</b> {{ item.name }} </li>
                     <li><b>Altura:</b> {{ item.height | height: item.height }} </li>

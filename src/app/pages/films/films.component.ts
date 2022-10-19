@@ -11,6 +11,7 @@ import { StarWarsDataService } from 'src/app/services/star-wars-data.service';
 export class FilmsComponent implements OnInit {
 
   public dataFilmResponse: FilmsResponse[] = [];
+  public filterPost: string = '';
   public showData: boolean = false;
   public isError: boolean = false;
   public showSpiner = true;

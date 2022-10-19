@@ -12,6 +12,7 @@ export class VehiclesComponent implements OnInit {
 
 
   public dataVehiclesResponse: VehiclesResponse[] = [];
+  public filterPost: string = '';
   public showData: boolean = false;
   public isError: boolean = false;
   public showSpiner = true;
