@@ -19,16 +19,12 @@ export class FilterPipe implements PipeTransform {
 
     // Aplicamos el filtro para el parametro title y devolvemos la data
     if (buscarEn === 'title') {
-      return data.filter((data: any) => {
-        return data.title.includes(termino);
-      });
+      return data.filter((e: any) => e.title.toLowerCase().indexOf(termino.toLowerCase()) >= 0);
     }
 
     // Aplicamos el filtro para el parametro name y devolvemos la data
     if (buscarEn === 'name') {
-      return data.filter((data: any) => {
-        return data.name.includes(termino);
-      });
+      return data.filter((e: any) => e.name.toLowerCase().indexOf(termino.toLowerCase()) >= 0);
     }
 
   }
