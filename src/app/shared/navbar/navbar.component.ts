@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { OldSearchs } from 'src/app/interfaces/oldSearchs';
 import { PeopleResponse } from 'src/app/interfaces/people';
 import { StarWarsDataService } from 'src/app/services/star-wars-data.service';
@@ -16,6 +17,8 @@ export class NavbarComponent implements OnInit {
   public dataSearch: PeopleResponse[] = [];
   public oldSearchs!: OldSearchs[];
 
+  searchTermChanged: Subject<string> = new Subject<string>();
+
   constructor(private starWarsService: StarWarsDataService,
     public storageServie: StorageService,
     private router: Router) { }
@@ -26,25 +29,34 @@ export class NavbarComponent implements OnInit {
     }, 2000);
   }
 
-  getVal() {
+  // Get value from input, after 2 secoonds witout write
+  getVal(event: any) {
 
-    if (this.valueSearch.length < 2) {
-      this.dataSearch = [];
-      return;
+    if (this.searchTermChanged.observers.length === 0) {
+      this.searchTermChanged.pipe(debounceTime(1000), distinctUntilChanged())
+        .subscribe((term: string) => {
+          this.valueSearch = term;
+          // Wa call method for get data
+          this.getData();
+        });
     }
+    this.searchTermChanged.next(event.value);
 
+  }
+
+  // We get Data
+  getData(){
     this.starWarsService
-      .searchPeople(this.valueSearch)
-      .subscribe(
-        (dataSearch: PeopleResponse[]) => {
-          this.dataSearch = [];
-          this.dataSearch = dataSearch;
-        },
-        error => {
-          console.warn(error);
-        }
-      );
-
+        .searchPeople(this.valueSearch)
+        .subscribe(
+          (dataSearch: PeopleResponse[]) => {
+            this.dataSearch = [];
+            this.dataSearch = dataSearch;
+          },
+          error => {
+            console.warn(error);
+          }
+        );
   }
 
   // We get old searchs from localStorage
@@ -73,9 +85,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([`/person/${text[5]}`]);
   }
 
-    // We navigate to see de oldSearchs, only navigate, don't save de serach ibn the localStorage
-    navigateOldSearchs(id?: any) {
-      this.router.navigate([`/person/${id}`]);
-    }
+  // We navigate to see de oldSearchs, only navigate, don't save de serach ibn the localStorage
+  navigateOldSearchs(id?: any) {
+    this.router.navigate([`/person/${id}`]);
+  }
 
 }

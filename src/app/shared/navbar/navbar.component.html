@@ -4,8 +4,7 @@
     </span>
     <div class="search-container p-2">
         <form>
-            <input type="text" placeholder="Buscador personajes" name="valueSearch" [(ngModel)]="valueSearch"
-                (keyup)="getVal()">
+            <input type="text" placeholder="Buscador personajes" name="valueSearch" (input)="getVal($event.target)">
         </form>
         <span class="results" *ngIf="dataSearch.length > 0">
             <ul *ngFor="let result of dataSearch">
